@@ -7,45 +7,62 @@ public class Sort {
 	private int quantityNumbers;
 	private static double[] array;
 
-	public Sort(int quantityNumbers, double rank1, double rank2, int option) {
+	public Sort(int quantityNumbers, double rank1, double rank2, int option, int optionRandom) {
 		
 		this.quantityNumbers = quantityNumbers;
 		array = new double[quantityNumbers];
-		generateRandom(quantityNumbers, rank1, rank2, option);
-		
-	}
-	//Opcion 0 = numeros entre un rango, se pueden repetir, orden aleatorio
-	//Opcion 1 = numeros entre un rango, no se pueden repetir, orden aleatorio
-	//Opcion 2 = numeros generados de forma aleatoria, ordenados, se pueden repetir
-	//Opcion 3 = numeros generados de forma aleatoria, ordenados, no se pueden repetir
-	//Opcion 4 = numeros generados de forma aleatoria, ordenados de forma inversa, se pueden repetir
-	//Opcion 5 = numeros generados de forma aleatoria, ordenados de forma inversa, no se pueden repetir
-	//Opcion 6 = numeros generados de forma aleatpria, ordenados en un porcentaje, se pueden repetir
-	//Opcion 7 = numeros generados de forma aleatoria, ordenados en un porcentaje, no se pueden repetir
-	
-	public void generateRandom(int quantity, double rank1, double rank2, int option) {
-		
-		if(option == 0) {
-		
-			generateRandomOption0(quantity, rank1, rank2, option);
-		
-		}
-		
-		else if(option == 1) {
-			
-			
-			
-		}
-		
-		else if(option == 2) {
-			
-			generateRandomOption2(quantity, rank1, rank2, option);
-			
-		}
+		generateRandom(quantityNumbers, rank1, rank2, option, optionRandom);
 		
 	}
 	
-	public void generateRandomOption0(int quantity, double rank1, double rank2, int option) {
+	
+	public void generateRandom(int quantity, double rank1, double rank2, int option, int optionRandom) {
+		
+		if(option == 0) {//repeat
+			
+			if(optionRandom == 2 ) {
+				//random
+				generateRandomOption0(quantity, rank1, rank2 );
+			
+			}else if(optionRandom == 3) {
+				//sort
+				generateRandomOption0(quantity, rank1, rank2 );
+			}else if(optionRandom == 4 ) {
+				//sort inverse
+				
+				
+			}else if(optionRandom == 5) {
+				//percentage
+				
+				
+			}
+		
+		}else if(option == 1) { //no repeat
+			
+			if(optionRandom == 2 ) {
+				//random
+			
+			
+			}else if(optionRandom == 3) {
+				//sort
+				generateRandomOption2(quantity, rank1, rank2);
+				
+			}else if(optionRandom == 4 ) {
+				//sort inverse
+				
+				
+			}else if(optionRandom == 5) {
+				//percentage
+				
+				
+			}
+			
+		}
+		
+		
+	}
+	
+	public void generateRandomOption0(int quantity, double rank1, double rank2) {
 		
 		for(int i=0; i<quantity; i++) {
 			
@@ -56,7 +73,7 @@ public class Sort {
 		
 	}
 	
-	public void generateRandomOption2(int quantity, double rank1, double rank2, int option) {
+	public void generateRandomOption2(int quantity, double rank1, double rank2) {
 		
 		for(int i=0; i<quantity; i++) {
 			
