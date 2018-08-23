@@ -22,15 +22,15 @@ public class Sort {
 			
 			if(optionRandom == 1 ) {
 				//random
-				generateRandomOption1(quantity, rank1, rank2);
+				generateRandomOption1(quantity, rank1, rank2, option);
 			
 			}else if(optionRandom == 2) {
 				//sort
-				generateRandomOption2(quantity, rank1, rank2);
+				generateRandomOption2(quantity, rank1, rank2, option);
 				
 			}else if(optionRandom == 3 ) {
 				//sort inverse
-				generateRandomOption3(quantity, rank1, rank2);
+				generateRandomOption3(quantity, rank1, rank2, option);
 				
 			}else if(optionRandom == 4) {
 				//percentage
@@ -43,14 +43,18 @@ public class Sort {
 			if(optionRandom == 1 ) {
 				//random
 			
+				generateRandomOption1(quantity, rank1, rank2, option);
+				
 			
 			}else if(optionRandom == 2) {
 				//sort
 			
+				generateRandomOption2(quantity, rank1, rank2, option);
 				
 			}else if(optionRandom == 3 ) {
 				//sort inverse
 				
+				generateRandomOption3(quantity, rank1, rank2, option);
 				
 			}else if(optionRandom == 4) {
 				//percentage
@@ -75,44 +79,94 @@ public class Sort {
 		
 	}
 	
-	public void generateRandomOption1(int quantity, double rank1, double rank2) {
-		
-		for(int i=0; i<quantity; i++) {
-			
-			 double random = Math.random()*(rank2-rank1)+rank1;
-			 array[i] = random;
-			 
-			}
-		
-	}
+	public void generateRandomOption1(int quantity, double rank1, double rank2, int option) {
 	
-	public void generateRandomOption2(int quantity, double rank1, double rank2) {
+		if(option == 0) {
 		
-		for(int i=0; i<quantity; i++) {
-			
-			 double random = Math.random()*(rank2-rank1)+rank1;
-			 array[i] = random;
-			 
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}
 		}
 		
-//		shellSort(array);
-//		mergeSort(array); //mejor con 200.000;
-		
+		else {
+			
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}
+			
+			checkRepetition(quantity, array, rank1, rank2);
+			
+		}
 	}
 	
-	public void generateRandomOption3(int quantity, double rank1, double rank2) {
+	public void generateRandomOption2(int quantity, double rank1, double rank2, int option) {
 		
-		for(int i=0; i<quantity; i++) {
+		if(option == 0) {
+		
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}
 			
-			 double random = Math.random()*(rank2-rank1)+rank1;
-			 array[i] = random;
-			 
-		}	
+	//		shellSort(array);
+			combSort(array); //mejor con 200.000;
+		}
 		
-//		combSort(array);
-		shellSort(array); //mejor con 200.000;
-		investArray(array);
+		else {
+			
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}
+			
+			checkRepetition(quantity, array, rank1, rank2);
+	//		shellSort(array);
+			combSort(array); //mejor con 200.000;
+			
+		}
+	}
+	
+	public void generateRandomOption3(int quantity, double rank1, double rank2, int option) {
 		
+		if(option == 0) {
+		
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}	
+			
+			combSort(array);
+	//		shellSort(array); //mejor con 200.000;
+			investArray(array);
+		}
+		
+		else {
+			
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}	
+			
+			checkRepetition(quantity, array, rank1, rank2);
+			combSort(array);
+	//		shellSort(array); //mejor con 200.000;
+			investArray(array);	
+			
+		}
 	}
 	
 	public void generateRandomOption4(int quantity, double rank1, double rank2, double percentage) {
@@ -128,8 +182,22 @@ public class Sort {
 		shellSort(array); //mejor con 200.000;
 		investArray(array);
 		
+		int k = (int)(quantity*percentage)/100;
 		
+	}
+	
+	public void checkRepetition(int quantity, double[] arrayToSort, double rank1, double rank2) {
 		
+		for(int i = 0; i < quantity; i++){ 
+			   for(int j = 0; j < quantity; j++){
+				    if(arrayToSort[i]==arrayToSort[j] && i!=j){
+					     double rnd = Math.random()*(rank2-rank1)+rank1;
+					     arrayToSort[i]=rnd;
+					     i=0;
+				    }
+			  
+			   }
+			}
 		
 	}
 
