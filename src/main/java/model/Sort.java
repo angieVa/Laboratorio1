@@ -7,31 +7,32 @@ public class Sort {
 	private int quantityNumbers;
 	private static double[] array;
 
-	public Sort(int quantityNumbers, double rank1, double rank2, int option, int optionRandom) {
+	public Sort(int quantityNumbers, double rank1, double rank2, int option, int optionRandom, double percentage) {
 		
 		this.quantityNumbers = quantityNumbers;
 		array = new double[quantityNumbers];
-		generateRandom(quantityNumbers, rank1, rank2, option, optionRandom);
+		generateRandom(quantityNumbers, rank1, rank2, option, optionRandom, percentage);
 		
 	}
 	
 	
-	public void generateRandom(int quantity, double rank1, double rank2, int option, int optionRandom) {
+	public void generateRandom(int quantity, double rank1, double rank2, int option, int optionRandom, double percentage) {
 		
 		if(option == 0) {//repeat
 			
-			if(optionRandom == 2 ) {
+			if(optionRandom == 1 ) {
 				//random
-				generateRandomOption0(quantity, rank1, rank2 );
+				generateRandomOption1(quantity, rank1, rank2);
 			
-			}else if(optionRandom == 3) {
+			}else if(optionRandom == 2) {
 				//sort
-				generateRandomOption0(quantity, rank1, rank2 );
-			}else if(optionRandom == 4 ) {
+				generateRandomOption2(quantity, rank1, rank2);
+				
+			}else if(optionRandom == 3 ) {
 				//sort inverse
+				generateRandomOption3(quantity, rank1, rank2);
 				
-				
-			}else if(optionRandom == 5) {
+			}else if(optionRandom == 4) {
 				//percentage
 				
 				
@@ -39,19 +40,19 @@ public class Sort {
 		
 		}else if(option == 1) { //no repeat
 			
-			if(optionRandom == 2 ) {
+			if(optionRandom == 1 ) {
 				//random
 			
 			
-			}else if(optionRandom == 3) {
+			}else if(optionRandom == 2) {
 				//sort
-				generateRandomOption2(quantity, rank1, rank2);
+			
 				
-			}else if(optionRandom == 4 ) {
+			}else if(optionRandom == 3 ) {
 				//sort inverse
 				
 				
-			}else if(optionRandom == 5) {
+			}else if(optionRandom == 4) {
 				//percentage
 				
 				
@@ -62,7 +63,19 @@ public class Sort {
 		
 	}
 	
-	public void generateRandomOption0(int quantity, double rank1, double rank2) {
+	public void investArray(double[] arrayToSort) {
+		
+		double aux;
+		
+		 for (int i=0; i<arrayToSort.length/2; i++) {
+	            aux = arrayToSort[i];
+	            arrayToSort[i] = arrayToSort[arrayToSort.length-1-i];
+	            arrayToSort[arrayToSort.length-1-i] = aux;
+	        }
+		
+	}
+	
+	public void generateRandomOption1(int quantity, double rank1, double rank2) {
 		
 		for(int i=0; i<quantity; i++) {
 			
@@ -82,8 +95,41 @@ public class Sort {
 			 
 		}
 		
-//		combSort(array);
+//		shellSort(array);
 //		mergeSort(array); //mejor con 200.000;
+		
+	}
+	
+	public void generateRandomOption3(int quantity, double rank1, double rank2) {
+		
+		for(int i=0; i<quantity; i++) {
+			
+			 double random = Math.random()*(rank2-rank1)+rank1;
+			 array[i] = random;
+			 
+		}	
+		
+//		combSort(array);
+		shellSort(array); //mejor con 200.000;
+		investArray(array);
+		
+	}
+	
+	public void generateRandomOption4(int quantity, double rank1, double rank2, double percentage) {
+		
+		for(int i=0; i<quantity; i++) {
+			
+			 double random = Math.random()*(rank2-rank1)+rank1;
+			 array[i] = random;
+			 
+		}	
+		
+//		combSort(array);
+		shellSort(array); //mejor con 200.000;
+		investArray(array);
+		
+		
+		
 		
 	}
 
