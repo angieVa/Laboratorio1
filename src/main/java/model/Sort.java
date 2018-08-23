@@ -82,12 +82,13 @@ public class Sort {
 			 
 		}
 		
-//		shellSort(array);
-		mergeSort(array); //mejor con 200.000
+//		combSort(array);
+//		mergeSort(array); //mejor con 200.000;
 		
 	}
+
 	
-	public void mergeSort(double[] arrayToSort) {
+	public void combSort(double[] arrayToSort) {
 		
 		int n = arrayToSort.length;
 		 
@@ -129,7 +130,7 @@ public class Sort {
 	}
 	
 	
-	//This method belongs to the method mergeSort
+	//This method belongs to the method combSort
 	public int getNextGap(int gap) {
 		
 		// Shrink gap by Shrink factor
