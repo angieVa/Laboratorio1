@@ -82,33 +82,86 @@ public class Sort {
 			 
 		}
 		
-		shellSort(array);
+//		shellSort(array);
+		mergeSort(array); //mejor con 200.000
 		
+	}
+	
+	public void mergeSort(double[] arrayToSort) {
+		
+		int n = arrayToSort.length;
+		 
+        // initialize gap
+        int gap = n;
+ 
+        // Initialize swapped as true to make sure that
+        // loop runs
+        boolean swapped = true;
+ 
+        // Keep running while gap is more than 1 and last
+        // iteration caused a swap
+        while (gap != 1 || swapped == true)
+        {
+            // Find next gap
+            gap = getNextGap(gap);
+ 
+            // Initialize swapped as false so that we can
+            // check if swap happened or not
+            swapped = false;
+ 
+            // Compare all elements with current gap
+            for (int i=0; i<n-gap; i++)
+            {
+                if (arrayToSort[i] > arrayToSort[i+gap])
+                {
+                    // Swap arr[i] and arr[i+gap]
+                    double temp = arrayToSort[i];
+                    arrayToSort[i] = arrayToSort[i+gap];
+                    arrayToSort[i+gap] = temp;
+ 
+                    // Set swapped
+                    swapped = true;
+                }
+            }
+        }
+		
+		
+	}
+	
+	
+	//This method belongs to the method mergeSort
+	public int getNextGap(int gap) {
+		
+		// Shrink gap by Shrink factor
+        gap = (gap*10)/13;
+        if (gap < 1)
+            return 1;
+        return gap;
 		
 	}
 	
 	public void shellSort(double[] arrayToSort) {
 		
-	int salto;
+	int jump;
 	double aux;
-	boolean cambios;
+	boolean changes;
 	
-		for(salto= arrayToSort.length/2; salto!=0; salto/=2){
+		for(jump= arrayToSort.length/2; jump!=0; jump/=2){
 			
-			cambios=true;
+			changes=true;
 			
-		    while(cambios){ 
+		    while(changes){ 
 		    	
-		    	cambios=false;
+		    	changes=false;
 		    	
-		        for(int i=salto; i< arrayToSort.length; i++) {
+		        for(int i=jump; i< arrayToSort.length; i++) {
 		        	
-		        	if(arrayToSort[i-salto]>arrayToSort[i]){
+		        	if(arrayToSort[i-jump]>arrayToSort[i]){
 		        		
 		        		aux=arrayToSort[i]; 
-		        		arrayToSort[i]=arrayToSort[i-salto];
-		                arrayToSort[i-salto]=aux;
-		                cambios=true; 
+		        		arrayToSort[i]=arrayToSort[i-jump];
+		                arrayToSort[i-jump]=aux;
+		                changes=true; 
 		           
 		        	}
 		                
