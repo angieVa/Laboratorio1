@@ -287,7 +287,9 @@ public class Sort {
 		}
 		
 	}
-	//Si utilizar
+	//Si utilizar, ojaá terminesmos
+	
+	
 	public static void insercionDirecta(int A[]){
 	    int p, j;
 	    int aux;
