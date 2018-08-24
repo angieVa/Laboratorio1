@@ -419,7 +419,6 @@ public class Sort {
 	
 	
 	public static void insercionDirecta(int A[]){
-		
 	    int p, j;
 	    int aux;
 	    for (p = 1; p < A.length; p++){ // desde el segundo elemento hasta
