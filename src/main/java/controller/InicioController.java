@@ -191,7 +191,7 @@ public class InicioController {
 	    	
 	    	rank1 = Double.parseDouble(txtIntervalL.getText());
 	    	rank2 = Double.parseDouble(txtIntervalU.getText());
-	    	percentage = Double.parseDouble(txtPercentage.getText())/100;
+	    	percentage = Double.parseDouble(txtPercentage.getText());
 	    	quantity = Integer.parseInt(txtData.getText());
 	    	
 	    	if(rbRandomOrder.isSelected() == true) {
@@ -205,8 +205,10 @@ public class InicioController {
 	    		
 	    	}else if(rbPercentage.isSelected() == true) {
 	    		optionRandom = 4;
+	    		System.out.print(optionRandom);
 	    		
 	    	}
+	    	
 	    	
 	    	Sort sort = new Sort( quantity, rank1, rank2, option, optionRandom, percentage);
 	    	
