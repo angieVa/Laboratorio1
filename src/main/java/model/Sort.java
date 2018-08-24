@@ -291,11 +291,11 @@ public class Sort {
 	
 	
 	public static void insercionDirecta(int A[]){
-	    int p, j;
+	    int i, j;
 	    int aux;
-	    for (p = 1; p < A.length; p++){ // desde el segundo elemento hasta
-	              aux = A[p]; // el final, guardamos el elemento y
-	              j = p - 1; // empezamos a comprobar con el anterior
+	    for (i = 1; i < A.length; i++){ // desde el segundo elemento hasta
+	              aux = A[i]; // el final, guardamos el elemento y
+	              j = i - 1; // empezamos a comprobar con el anterior
 	              while ((j >= 0) && (aux < A[j])){ // mientras queden posiciones y el
 	                                                                    // valor de aux sea menor que los
 	                             A[j + 1] = A[j];       // de la izquierda, se desplaza a
