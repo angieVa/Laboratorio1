@@ -34,7 +34,7 @@ public class Sort {
 				
 			}else if(optionRandom == 4) {
 				//percentage
-				
+				generateRandomOption4(quantity, rank1, rank2, option, percentage);
 				
 			}
 		
@@ -44,7 +44,6 @@ public class Sort {
 				//random
 			
 				generateRandomOption1(quantity, rank1, rank2, option);
-				
 			
 			}else if(optionRandom == 2) {
 				//sort
@@ -59,6 +58,7 @@ public class Sort {
 			}else if(optionRandom == 4) {
 				//percentage
 				
+				generateRandomOption4(quantity, rank1, rank2, option, percentage);
 				
 			}
 			
@@ -116,8 +116,22 @@ public class Sort {
 				 
 			}
 			
-	//		shellSort(array);
-			combSort(array); //mejor con 200.000;
+			
+			if(quantity <= 500) {
+				
+				insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				combSort(array);	
+				
+			} else {
+				
+				shellSort(array);
+				
+			}
+			
+			 
 		}
 		
 		else {
@@ -130,8 +144,21 @@ public class Sort {
 			}
 			
 			checkRepetition(quantity, array, rank1, rank2);
-	//		shellSort(array);
-			combSort(array); //mejor con 200.000;
+			
+			if(quantity <= 500) {
+				
+				insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				combSort(array);	
+				
+			} else {
+				
+				shellSort(array);
+				
+			}
+
 			
 		}
 	}
@@ -147,8 +174,21 @@ public class Sort {
 				 
 			}	
 			
-			combSort(array);
-	//		shellSort(array); //mejor con 200.000;
+
+			if(quantity <= 500) {
+				
+				insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				combSort(array);	
+				
+			} else {
+				
+				shellSort(array);
+				
+			}
+			
 			investArray(array);
 		}
 		
@@ -162,28 +202,109 @@ public class Sort {
 			}	
 			
 			checkRepetition(quantity, array, rank1, rank2);
-			combSort(array);
-	//		shellSort(array); //mejor con 200.000;
+
+			if(quantity <= 500) {
+				
+				insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				combSort(array);	
+				
+			} else {
+				
+				shellSort(array);
+				
+			}
+			
 			investArray(array);	
 			
 		}
 	}
 	
-	public void generateRandomOption4(int quantity, double rank1, double rank2, double percentage) {
+	public void generateRandomOption4(int quantity, double rank1, double rank2, int option, double percentage) {
 		
-		for(int i=0; i<quantity; i++) {
+		if(option == 0) {
+		
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}	
+				
+			if(quantity <= 500) {
+				
+				insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				combSort(array);	
+				
+			} else {
+				
+				shellSort(array);
+				
+			}
 			
-			 double random = Math.random()*(rank2-rank1)+rank1;
-			 array[i] = random;
-			 
-		}	
-		
-//		combSort(array);
-		shellSort(array); //mejor con 200.000;
-		investArray(array);
-		
-		int k = (int)(quantity*percentage)/100;
-		
+			
+			int k = (int)(quantity*percentage)/100;
+			for(int i=(quantity-k); i<((quantity-k)+(k/2)); i++) {
+				for(int j=quantity-1; j>((quantity-k)+(k/2)); j--) {
+					
+					double aux;
+					aux = array[i];
+					array[i] = array[j];
+					array[j] = aux;
+					
+					
+				}
+				
+			}
+			
+		}else {
+			
+			for(int i=0; i<quantity; i++) {
+				
+				 double random = Math.random()*(rank2-rank1)+rank1;
+				 array[i] = random;
+				 
+			}	
+			
+			checkRepetition(quantity, array, rank1, rank2);
+
+			
+			if(quantity <= 500) {
+				
+				insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				combSort(array);	
+				
+			} else {
+				
+				shellSort(array);
+				
+			}
+			
+			int k = (int)(quantity*percentage)/100;
+			for(int i=(quantity-k); i<((quantity-k)+(k/2)); i++) {
+				for(int j=quantity-1; j>((quantity-k)+(k/2)); j--) {
+					
+					double aux;
+					aux = array[i];
+					array[i] = array[j];
+					array[j] = aux;
+					
+					
+				}
+				
+			}
+			
+			
+			
+		}
 	}
 	
 	public void checkRepetition(int quantity, double[] arrayToSort, double rank1, double rank2) {
@@ -206,35 +327,25 @@ public class Sort {
 		
 		int n = arrayToSort.length;
 		 
-        // initialize gap
         int gap = n;
- 
-        // Initialize swapped as true to make sure that
-        // loop runs
+
         boolean swapped = true;
- 
-        // Keep running while gap is more than 1 and last
-        // iteration caused a swap
-        while (gap != 1 || swapped == true)
-        {
-            // Find next gap
+
+        while (gap != 1 || swapped == true) {
+            
             gap = getNextGap(gap);
- 
-            // Initialize swapped as false so that we can
-            // check if swap happened or not
             swapped = false;
  
-            // Compare all elements with current gap
             for (int i=0; i<n-gap; i++)
             {
                 if (arrayToSort[i] > arrayToSort[i+gap])
                 {
-                    // Swap arr[i] and arr[i+gap]
+                    
                     double temp = arrayToSort[i];
                     arrayToSort[i] = arrayToSort[i+gap];
                     arrayToSort[i+gap] = temp;
  
-                    // Set swapped
+                    
                     swapped = true;
                 }
             }
@@ -244,16 +355,18 @@ public class Sort {
 	}
 	
 	
-	//This method belongs to the method combSort
+	
 	public int getNextGap(int gap) {
 		
-		// Shrink gap by Shrink factor
+		
         gap = (gap*10)/13;
         if (gap < 1)
             return 1;
         return gap;
 		
 	}
+	
+	
 	
 	public void shellSort(double[] arrayToSort) {
 		
@@ -287,6 +400,21 @@ public class Sort {
 		}
 		
 	}
+	
+	public void insertionSort(double[] arrayToSort) {
+		
+		for (int i = 1; i < arrayToSort.length; i++) {
+			for (int j = i; j >0;j--) {
+				double current = arrayToSort[j];
+				double toEvaluate = arrayToSort[j-1];
+				if(toEvaluate > current) {
+					double aux = arrayToSort[j-1];
+					arrayToSort[j-1] = arrayToSort[j];
+					arrayToSort[j] = aux;
+				}
+			}
+		}
+	}	
 	//Si utilizar, ojaá terminesmos
 	
 	
@@ -304,7 +432,9 @@ public class Sort {
 	              }
 	              A[j + 1] = aux; // colocamos aux en su sitio
 	    }
+
 	}
+	
 	public static String prueba() {
 		
 		return Arrays.toString(array);
@@ -319,5 +449,4 @@ public class Sort {
 		this.array = array;
 	}
 
-	
 }
