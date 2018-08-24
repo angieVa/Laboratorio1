@@ -9,7 +9,6 @@ import model.Sort;
 
 public class Main extends Application {
 
-	private Sort sort;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {

@@ -121,8 +121,8 @@ public class InicioController {
 	    	listValues.setItems(items);
 	    	
 	    	
-	    	
-	    	
+	    	labelTime.setText(String.valueOf(sort1.getTime()));
+	    	System.out.println(sort1.getTime());
 
 	    }
 
@@ -133,7 +133,8 @@ public class InicioController {
 
 	    @FXML
 	    void Order2(ActionEvent event) {
-	    	
+	    
+	 
 	    	int quantity = items.size();
 
 	    	double[] array = new double[quantity];
@@ -166,8 +167,8 @@ public class InicioController {
 	    	}
 	    	
 	    	listValues.setItems(items);
-	    	
-	    	
+	    	labelTime.setText(String.valueOf(sort1.getTime()));
+	    	System.out.println(sort1.getTime());
 	    }
 
 	    @FXML
@@ -220,6 +221,8 @@ public class InicioController {
 	    	}
 	    	
 	    	listValues.setItems(items);
+	    	
+	    	
 	    	
 	    	
 	    }

@@ -6,6 +6,7 @@ public class Sort {
 	
 	private int quantityNumbers;
 	private static double[] array;
+	private long time;
 
 	public Sort(int quantityNumbers, double rank1, double rank2, int option, int optionRandom, double percentage) {
 		
@@ -324,7 +325,7 @@ public class Sort {
 
 	
 	public void combSort(double[] arrayToSort) {
-		
+		long star = System.currentTimeMillis();
 		int n = arrayToSort.length;
 		 
         int gap = n;
@@ -350,8 +351,9 @@ public class Sort {
                 }
             }
         }
-		
-		
+	
+        long end = System.currentTimeMillis();
+		time = end -star;
 	}
 	
 	
@@ -370,6 +372,7 @@ public class Sort {
 	
 	public void shellSort(double[] arrayToSort) {
 		
+	long star = System.currentTimeMillis();	
 	int jump;
 	double aux;
 	boolean changes;
@@ -398,10 +401,12 @@ public class Sort {
 		    }
 		    
 		}
-		
+		long end = System.currentTimeMillis();
+		time = end -star;
 	}
 	
 	public void insertionSort(double[] arrayToSort) {
+		long star = System.currentTimeMillis();
 		
 		for (int i = 1; i < arrayToSort.length; i++) {
 			for (int j = i; j >0;j--) {
@@ -414,6 +419,8 @@ public class Sort {
 				}
 			}
 		}
+		long end = System.currentTimeMillis();
+		time = end -star;
 	}	
 	
 	
@@ -430,5 +437,23 @@ public class Sort {
 	public void setArray(double[] array) {
 		this.array = array;
 	}
+
+
+	/**
+	 * @return the time
+	 */
+	public long getTime() {
+		return time;
+	}
+
+
+	/**
+	 * @param time the time to set
+	 */
+	public void setTime(long time) {
+		this.time = time;
+	}
+	
+	
 
 }
