@@ -78,11 +78,51 @@ public class InicioController {
 
 	    @FXML
 	    void AddValues(ActionEvent event) {
+	    	
+	    	items.add(Double.parseDouble(txtValues.getText()));
+	    	listValues.setItems(items);
 
 	    }
 
 	    @FXML
 	    void Order1(ActionEvent event) {
+	    	
+	    	int quantity = items.size();
+
+	    	double[] array = new double[quantity];
+	    	
+	    		for(int i = 0; i< items.size(); i++) {
+	    			
+	    			array[i] = items.get(i);
+	    		}
+	    		
+	    		
+	    	
+	    	if(quantity <= 500) {
+				
+				sort1.insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				sort1.combSort(array);	
+				
+			} else {
+				
+				sort1.shellSort(array);
+				
+			}
+	    	
+	    	items.remove(0, quantity);
+	    	
+	    	for(int i = 0; i< array.length; i++) {
+	    		items.add(array[i]);
+	    	}
+	    	
+	    	listValues.setItems(items);
+	    	
+	    	
+	    	
+	    	
 
 	    }
 
@@ -151,7 +191,7 @@ public class InicioController {
 	    	
 	    	rank1 = Double.parseDouble(txtIntervalL.getText());
 	    	rank2 = Double.parseDouble(txtIntervalU.getText());
-	    	percentage = Double.parseDouble(txtPercentage.getText())/100;
+	    	percentage = Double.parseDouble(txtPercentage.getText());
 	    	quantity = Integer.parseInt(txtData.getText());
 	    	
 	    	if(rbRandomOrder.isSelected() == true) {
@@ -165,8 +205,10 @@ public class InicioController {
 	    		
 	    	}else if(rbPercentage.isSelected() == true) {
 	    		optionRandom = 4;
+	    		System.out.print(optionRandom);
 	    		
 	    	}
+	    	
 	    	
 	    	Sort sort = new Sort( quantity, rank1, rank2, option, optionRandom, percentage);
 	    	
