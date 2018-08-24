@@ -16,8 +16,8 @@ import model.Sort;
 public class InicioController {
 		
 	
-
-	 @FXML
+		Sort sort1 = new Sort(0,0,0,0,0,0 );
+	 	@FXML
 	    private Button butOrder;
 
 	    @FXML
@@ -73,6 +73,8 @@ public class InicioController {
 
 	    @FXML
 	    private RadioButton rbOrderedValues;
+	    
+		ObservableList<Double> items =FXCollections.observableArrayList(); 
 
 	    @FXML
 	    void AddValues(ActionEvent event) {
@@ -91,7 +93,41 @@ public class InicioController {
 
 	    @FXML
 	    void Order2(ActionEvent event) {
+	    	
+	    	int quantity = items.size();
 
+	    	double[] array = new double[quantity];
+	    	
+	    		for(int i = 0; i< items.size(); i++) {
+	    			
+	    			array[i] = items.get(i);
+	    		}
+	    		
+	    		
+	    	
+	    	if(quantity <= 500) {
+				
+				sort1.insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				sort1.combSort(array);	
+				
+			} else {
+				
+				sort1.shellSort(array);
+				
+			}
+	    	
+	    	items.remove(0, quantity);
+	    	
+	    	for(int i = 0; i< array.length; i++) {
+	    		items.add(array[i]);
+	    	}
+	    	
+	    	listValues.setItems(items);
+	    	
+	    	
 	    }
 
 	    @FXML
@@ -134,8 +170,8 @@ public class InicioController {
 	    	
 	    	Sort sort = new Sort( quantity, rank1, rank2, option, optionRandom, percentage);
 	    	
-	    	ObservableList<Double> items =FXCollections.observableArrayList(); 
-	   
+	    	
+	  
 	    	for(int i = 0; i < quantity; i++) {
 	    		items.add(sort.getArray()[i]);
 	    		
