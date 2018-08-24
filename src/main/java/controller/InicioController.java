@@ -78,11 +78,51 @@ public class InicioController {
 
 	    @FXML
 	    void AddValues(ActionEvent event) {
+	    	
+	    	items.add(Double.parseDouble(txtValues.getText()));
+	    	listValues.setItems(items);
 
 	    }
 
 	    @FXML
 	    void Order1(ActionEvent event) {
+	    	
+	    	int quantity = items.size();
+
+	    	double[] array = new double[quantity];
+	    	
+	    		for(int i = 0; i< items.size(); i++) {
+	    			
+	    			array[i] = items.get(i);
+	    		}
+	    		
+	    		
+	    	
+	    	if(quantity <= 500) {
+				
+				sort1.insertionSort(array);
+				
+			} else if(quantity > 500 && quantity <= 100000) {
+				
+				sort1.combSort(array);	
+				
+			} else {
+				
+				sort1.shellSort(array);
+				
+			}
+	    	
+	    	items.remove(0, quantity);
+	    	
+	    	for(int i = 0; i< array.length; i++) {
+	    		items.add(array[i]);
+	    	}
+	    	
+	    	listValues.setItems(items);
+	    	
+	    	
+	    	
+	    	
 
 	    }
 
